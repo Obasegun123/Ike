@@ -66,7 +66,9 @@
               {% comment %} {% for religion in type.common_religion.all %} {% endcomment %}
               <p style="padding-left: 80px;"><strong>Common Religion:</strong>{{data.common_religion.all|join:", "}}</p>
               {% comment %} religion.name.all|join:", " {% endcomment %}
-              {% comment %} {% endfor %} {% endcomment %}
+              {% comment %} {% endfor %} {% endcomment %}</br>
+            </br>
+          </br> </br>
               <p style="padding-left: 80px;"><strong>Date of Independence:</strong>{{data.independence_date}}</p>
 
               {% for mark in data.landmark.all %}

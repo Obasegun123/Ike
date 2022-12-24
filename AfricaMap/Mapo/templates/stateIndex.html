@@ -1,17 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Stateindex.css">
-    <title>State In Nigeria</title>
+    <link rel="stylesheet" href="{% static 'css/Stateindex.css' %}">
+    <title>Country Info</title>
 </head>
 <body>
        <header>
            <div class="header-content">
                <div class="header-first">
-                    <h2>State.com</h2>
+                    <h2>Africa</h2>
                </div>
                 <div class="header-search">
                     <ul>
@@ -28,24 +29,32 @@
            <div class="content">
                <div class="country">
                     <div class="country-head">
-                        <h3 class="capital"><span>Country:</span> Nigeria</h3>
+                        <h4 class="capital">Country:<span class="T"> {{data.country}}<span/></h4>
                     </div>
                     <div class="country-body">
                          <h5 class="capital">Capital</h5>
-                         <img src="abuja.jpeg" alt="imageOfLagos">
+                         <img src="/media/{{data.capital.photo}}" alt="imageOfLagos">
                     </div>
                     <div class="country-footer">
-                        <h5>Abuja</h5>
+                        <h5>{{data.capital.name}}</h5>
                     </div>
                </div>
                <div class="largest">
                    <h3 class="capital">Largest City</h3>
                </div>
                <div class="largestCity">
+                {% for city in data.city.all %}
                      <div class="city">
+                        <img src="/media/{{city.photo}}" alt="imageOfLagos">
+                        <div class="country-footer">
+                            <h5>{{city.name}}</h5>
+                        </div>
+                     </div>
+                     {% endfor %}
+                     {% comment %} <div class="city">
                         <img src="abuja.jpeg" alt="imageOfLagos">
                         <div class="country-footer">
-                            <h5>Lagos</h5>
+                            <h5>Abuja</h5>
                         </div>
                      </div>
                      <div class="city">
@@ -53,39 +62,40 @@
                         <div class="country-footer">
                             <h5>Abuja</h5>
                         </div>
-                     </div>
-                     <div class="city">
-                        <img src="abuja.jpeg" alt="imageOfLagos">
-                        <div class="country-footer">
-                            <h5>Abuja</h5>
-                        </div>
-                     </div>
+                     </div> {% endcomment %}
                </div>
-               <div class="lang">
-                <p>Language: <span>Yoruba</span></p>
-                <p>Demonyms: <span>Nigerian</span></p>
+               {% for lang in data.language.all %}
+               <div class="religion">
+                <h4>Language: <span class="T">{{lang.name}}</span></h4>
+                {% endfor %}
+                <h4>Demonyms: <span class="T">{{data.demonyms}}</span></h4>
                </div>
-               <hr class="divide"/>
+               {% comment %} <hr class="divide"/> {% endcomment %}
                <div class="flag">
                    <div class="country-body">
-                       <h3 class="capital">Flag</h3>
-                      <img src="abuja.jpeg" alt="imageOfLagos">
+                       <h3 class="capital">Flag: </h3>
+                       <img src="/media/{{data.flag}}" alt="imageOfLagos">
                    </div>
-                  <div class="flag-footer">
-                        <h5>Time Zone:<span>UTC + 1</span></h5>
-                        <h5>Population700,000,098</h5>
+                  <div class="religion">
+                    {% for time in data.timezone.all %}
+                        <h4>Time Zone:<span class="T"> {{time.timezone}}</span></h5>
+                        {% endfor %}
+                  </br>
+                        <h4>Population:<span class="T"> {{data.population}}</span></h5>
                   </div>
                </div>
                 <div class="culture">
                     <h4 class="capital">culture</h4>
                     <div class="largestCity">
+                        {% for culture in data.culture.all %}
                         <div class="city">
-                            <img src="abuja.jpeg" alt="imageOfLagos">
+                            <img src="/media/{{culture.photo}}" alt="imageOfLagos">
                             <div class="country-footer">
-                                <h5>Abuja</h5>
+                                <h5>{{culture.name}}</h5>
                             </div>
                          </div>
-                        <div class="city">
+                         {% endfor %}
+                        {% comment %} <div class="city">
                            <img src="abuja.jpeg" alt="imageOfLagos">
                            <div class="country-footer">
                                <h5>Abuja</h5>
@@ -96,107 +106,79 @@
                            <div class="country-footer">
                                <h5>Abuja</h5>
                            </div>
-                        </div>
+                        </div> {% endcomment %}
                   </div>
                 </div>
+                <div class="religion">
+                    <h4>Call Code:<span class="T">{{data.call_code}}</span></h4>
+               </div>
                 <div class="ethinic">
                     <h4 class="capital">Ethinic Group</h4>
                     <div class="largestCity">
-
+                        {% for group in data.ethnic_group.all %}
                         <div class="city">
-                            <img src="abuja.jpeg" alt="imageOfLagos">
+                            <img src="/media/{{group.photo}}" alt="imageOfLagos">
                             <div class="country-footer">
-                                <h5>Abuja</h5>
+                                <h5>{{group.name}}</h5>
                             </div>
                          </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
+                         {% endfor %}
+                       
+                        
                   </div>
                   <div class="religion">
-                       <h4>Common Religion: <span class="rel">Muslim, Christian</span></h4>
-                       <h4>Date of Independence:<span class="rel">Oct 1, 1960</span></h4>
+                       <h4 class="A">Common Religion: <span class="T">{{data.common_religion.all|join:", "}}</span></h4>
+                  </br>
+                       <h4 class="A">Date of Independence:<span class="T">{{data.independence_date}}</span></h4>
                   </div>
                 </div>
                 <div class="culture">
                     <h4 class="capital">Land Mark</h4>
                     <div class="largestCity">
+                        {% for mark in data.landmark.all %}
                         <div class="city">
-                            <img src="abuja.jpeg" alt="imageOfLagos">
+                            <img src="/media/{{mark.photo}}" alt="imageOfLagos">
                             <div class="country-footer">
-                                <h5>Abuja</h5>
+                                <h5>{{mark.name}}</h5>
                             </div>
                          </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
+                         {% endfor %}
                   </div>
                 </div>
+                {% for tourist in data.tourist.all %}
                 <div class="culture">
                     <h4 class="capital">Tourist Attraction</h4>
                     <div class="largestCity">
                         <div class="city">
-                            <img src="abuja.jpeg" alt="imageOfLagos">
+                            <img src="/media/{{tourist.photo}}" alt="imageOfLagos">
                             <div class="country-footer">
-                                <h5>Abuja</h5>
+                                <h5>{{tourist.name}}</h5>
                             </div>
                          </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
-                        <div class="city">
-                           <img src="abuja.jpeg" alt="imageOfLagos">
-                           <div class="country-footer">
-                               <h5>Abuja</h5>
-                           </div>
-                        </div>
+                         {% endfor %}
                   </div>
                 </div>    
                 
                <div class="final-txt">
-                 <p class="A">
-                    <span>Polical History:</span> In the course of the examination, you are not permitted to 
-                    click outside of the examination page, on your computer, for another tab or any 
-                    other application for whatever reason, including for use of system calculator, 
-                    a calculator will be provided on the examination page. Departure from the 
-                    Examination tab will result due penalty.
-                </p>
+                 <h4 class="A">Polical History:<span class="T">{{data.political_history}}</span></h4>
                 <audio src="" />
                </div>   
            </div>
               <div class="audio">
                    <div class="audio-1">
+                    <h4 class="txt1">Language: </h4>
                     <audio controls>
-                         <source src="horse.ogg" type="audio/ogg">
-                         <source src="horse.mp3" type="audio/mpeg">
+                         {% comment %} <source src="/media/{{data.spoken_language}}" type="audio/ogg"> {% endcomment %}
+                         <source src="/media/{{data.spoken_language}}" type="audio/mpeg">
                          Your browser does not support the audio element.
                     </audio>
                    </div>
+                   <br/>
                    <div class="audio-2">
-                       <audio controls>
-                           <source src="horse.ogg" type="audio/ogg">
-                           <source src="horse.mp3" type="audio/mpeg">
+                    <h4 class="txt2">Tribe: </h4>
+                       <audio class="aud1" controls>
+                           {% comment %} <source src="" type="audio/ogg"> {% endcomment %}
+                           <source src="/media/{{data.anthem}}" type="audio/mpeg">
                            Your browser does not support the audio element.
                       </audio>
                    </div>

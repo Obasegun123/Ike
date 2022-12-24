@@ -31,7 +31,7 @@ def detail(request, detail_id):
   context = {
       'data':countries
   }
-  return render(request, "index.html", context)
+  return render(request, "stateIndex.html", context)
 
 
 class SearchResultsView(ListView):

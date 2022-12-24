@@ -1,11 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class CountryName(models.Model):
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
 
 class Currency(models.Model):
@@ -75,6 +71,7 @@ class LanguageName(models.Model):
 
 class Culture(models.Model):
     name = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to="culture", blank=True,null=True, default=None)
     def __str__(self):
         return self.name
 
@@ -89,7 +86,7 @@ class CapitalName(models.Model):
 
 
 class Country(models.Model):
-    country = models.ForeignKey(CountryName, on_delete=models.CASCADE, default='', null='')
+    country = models.CharField(max_length=255, null=True, blank=True,default="")
     capital = models.ForeignKey(CapitalName, on_delete=models.CASCADE, default='', null='')
     language = models.ManyToManyField(LanguageName)
     currency = models.ManyToManyField(Currency) 
@@ -109,5 +106,5 @@ class Country(models.Model):
     spoken_language = models.FileField( upload_to ='language', default='',null=True, blank=True)
     anthem = models.FileField( upload_to='anthem')
 
-    # def __str__(self):
-    #     return self.country
+    def __str__(self):
+        return self.country

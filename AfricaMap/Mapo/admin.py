@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Currency,City,Country,Ethnic,Tourist,CommonReligion,LandMark,CountryName,Timezone,Demonyms,LanguageName,Culture,CapitalName
+from .models import Currency,City,Country,Ethnic,Tourist,CommonReligion,LandMark,Timezone,Demonyms,LanguageName,Culture,CapitalName
 
 # Register your models here.
 # class PostImageAdmin(admin.StackedInline):
@@ -12,4 +12,4 @@ from .models import Currency,City,Country,Ethnic,Tourist,CommonReligion,LandMark
 #     class Meta:
 #        model = Currency
 
-admin.site.register([Currency,City,Country,Ethnic,Tourist,CommonReligion,LandMark,CountryName,Timezone,Demonyms,LanguageName,Culture,CapitalName])
+admin.site.register([Currency,City,Country,Ethnic,Tourist,CommonReligion,LandMark,Timezone,Demonyms,LanguageName,Culture,CapitalName])
