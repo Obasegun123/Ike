@@ -1,0 +1,146 @@
+
+{% load static %}<!DOCTYPE html>
+
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <title>Simple registration form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+  </head>
+  
+  <body>
+    {% comment %} {% if data %} {% endcomment %}
+    <div class="main-block">
+      {% comment %} {% for type in data %} {% endcomment %}
+      <div class="main" style="font-size: 40px;"><p style="padding-left: 80px;"><strong>Country:</strong>{{data.country}}</p>
+        {% comment %} {% for capital in type.capital %} {% endcomment %}
+        <p style="padding-left: 140px;"><strong>Capital</strong></p>
+        <div class="capital" style="padding-left: 80px;">
+        <img  src="/media/{{data.capital.photo}}">
+        <p style="padding-left: 80px;">{{data.capital.name}}</p></div>
+        {% comment %} {% endfor %} {% endcomment %}
+        <p  style="text-align: center;"><strong>Largest City</strong></p>
+        {% for city in data.city.all %}
+        <div class="cities">
+        <div class="city">
+          <img src="/media/{{city.photo}}">
+          <p style="padding: auto;">{{city.name}}</p>
+        </div>
+        </div>
+        {% endfor %}
+
+        {% for lang in data.language.all %}
+        <p style="padding-left: 80px;"><strong>Language:</strong>{{lang.name}}</p>
+        {% endfor %}
+
+        <p style="padding-left: 80px;"><strong>Demonyms:</strong>{{data.demonyms}}</p>
+        <div style="margin: 10px 0 10px 80px;"><p style="padding-left: 80px;"><strong>Flag</strong></p>
+          <img src="/media/{{type.flag}}"></div>
+          {% for time in data.timezone.all %}
+          <p style="padding-left: 80px;"><strong>Time Zone:</strong>{{time.timezone}}</p>
+          {% endfor %}
+          <p style="padding-left: 80px;"><strong>Population: </strong>{{data.population}}</p>
+
+          {% for culture in data.culture.all %}
+          <p style="text-align: center;"><strong>Culture</strong></p>
+          <div class="" style="display: flex; margin: 10px 0 0 80px;">
+            <div class="culture">
+              {% comment %} <img src="/media/{{culture.photo}}"> {% endcomment %}
+              <p>{{culture.name}}</p>
+            </div>
+            {% endfor %}
+            </div>
+            <p style="padding-left: 80px;"><strong>Call Code</strong>{{data.call_code}}</p>
+
+            {% for group in data.ethnic_group.all %}
+            <p style="text-align: center;"><strong>Ethnic Group</strong></p>
+            <div class="" style="display: flex; margin: 10px 0 0 80px;">
+              <div class="ethnic">
+                <img src="/media/{{group.photo}}">
+                <p>{{group.name}}</p>
+              </div>
+              </div>
+              {% endfor %}
+              {% comment %} {% for religion in type.common_religion.all %} {% endcomment %}
+              <p style="padding-left: 80px;"><strong>Common Religion:</strong>{{data.common_religion.all|join:", "}}</p>
+              {% comment %} religion.name.all|join:", " {% endcomment %}
+              {% comment %} {% endfor %} {% endcomment %}
+              <p style="padding-left: 80px;"><strong>Date of Independence:</strong>{{data.independence_date}}</p>
+
+              {% for mark in data.landmark.all %}
+              <p style="text-align: center;"><strong>Land Mark</strong></p>
+              <div class="" style="display: flex; margin: 10px 0 0 80px;">
+                <div class="mark">
+                  <img src="/media/{{mark.photo}}">
+                  <p>{{mark.name}}</p>
+                </div>
+                </div>
+                {% endfor %}
+                {% for tourist in data.tourist.all %}
+               <p style="text-align: center;"><strong>Tourist Attraction</strong></p>
+                <div class="" style="display: flex; margin: 10px 0 0 80px;"><p>
+                  <div class="tourist">
+                    <img src="/media/{{tourist.photo}}">
+                    <p>{{tourist.name}}</p>
+                  </div>
+                  </div>
+                  {% endfor %}
+
+                  <p style="padding:0 35px 15px 80px;"><strong>Polical History:</strong>{{data.political_history}}</p>
+                  <audio controls>
+                  <p style="padding-left: 80px;"><strong>Audio File:</strong></p>
+                    {% comment %} <source src="horse.ogg" type="audio/ogg"> {% endcomment %}
+                    <source src="/media/{{data.spoken_language}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <audio controls>
+                    
+                    
+                    
+                      {% comment %} <source src="horse.ogg" type="audio/ogg"> {% endcomment %}
+                      <source src="/media/{{data.anthem}}" type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+  
+
+                  {% comment %} {% endfor %} {% endcomment %}
+      </div>
+      {% comment %} {% else %}
+            <h3> Nothing to display <h3>
+            {% endif %} {% endcomment %}
+      <!-- <h1>Registration</h1> -->
+      <!-- <form action="/">
+        <hr>
+        <div class="account-type">
+          <input type="radio" value="none" id="radioOne" name="account" checked/>
+          <label for="radioOne" class="radio">Personal</label>
+          <input type="radio" value="none" id="radioTwo" name="account" />
+          <label for="radioTwo" class="radio">Company</label>
+        </div>
+        <hr>
+        <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
+        <input type="text" name="name" id="name" placeholder="Email" required/>
+        <label id="icon" for="name"><i class="fas fa-user"></i></label>
+        <input type="text" name="name" id="name" placeholder="Name" required/>
+        <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
+        <input type="password" name="name" id="name" placeholder="Password" required/>
+        <hr>
+        <div class="gender">
+          <input type="radio" value="none" id="male" name="gender" checked/>
+          <label for="male" class="radio">Male</label>
+          <input type="radio" value="none" id="female" name="gender" />
+          <label for="female" class="radio">Female</label>
+        </div>
+        <hr>
+        <div class="btn-block">
+          <p>By clicking Register, you agree on our <a href="https://www.w3docs.com/privacy-policy">Privacy Policy for W3Docs</a>.</p>
+          <button type="submit" href="/">Submit</button>
+        </div>
+      </form> -->
+      
+    </div>
+  </body>
+  
+</html>

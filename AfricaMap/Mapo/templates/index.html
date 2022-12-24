@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>State In Nigeria</title>
+</head>
+<body>
+       <header>
+           <div class="header-content">
+               <div class="header-top">
+                    <h5>State</h5>
+               </div>
+                <div class="header-search">
+                    <input type="text" placeholder="Enter State">
+                    <button type="button" class="search">Search</button>
+                </div>
+           </div>
+       </header>
+       <div class="container col-s-8">
+        {% comment %} {% for type in data %} {% endcomment %}
+           <div class="content">
+               <div class="country">
+                    <div class="country-head">
+                        <h3><span class="con">Country:</span>{{data.country}}</h3>
+                    </div>
+                    <div class="country-body">
+                         <h5 class="capital">Capital</h5>
+                         <img src="/media/{{data.capital.photo}}" alt="imageOfLagos">
+                    </div>
+                    <div class="country-footer">
+                        <h5>{{data.capital.name}}</h5>
+                    </div>
+               </div>
+               
+               <div class="largest">
+                
+                   <h3>Largest City</h3>
+               </div>
+               <div class="largestCity">
+                {% for city in data.city.all %}
+                     <div class="city">
+                        <img src="/media/{{city.photo}}" alt="imageOfLagos">
+                        <div class="country-footer">
+                            <h5>{{city.name}}</h5>
+                        </div>
+                        
+                        
+                     </div>
+                     {% endfor %}
+                     {% comment %} <div class="city">
+                        <img src="abuja.jpeg" alt="imageOfLagos">
+                        <div class="country-footer">
+                            <h5>Abuja</h5>
+                        </div>
+                        <div class="lang">
+                            <p>Language: <span>Yoruba</span></p>
+                            <p>Demonyms: <span>Nigerian</span></p>
+                       </div>
+                     </div>
+                     <div class="city">
+                        <img src="abuja.jpeg" alt="imageOfLagos">
+                        <div class="country-footer">
+                            <h5>Abuja</h5>
+                        </div>
+                        <div class="lang">
+                            <p>Language: <span>Yoruba</span></p>
+                            <p>Demonyms: <span>Nigerian</span></p>
+                       </div>
+                     </div> {% endcomment %}
+               </div>
+               
+               {% for lang in data.language.all %}
+                        <div class="lang">
+                             <p>Language: <span>{{lang.name}}</span></p>
+                             {% endfor %}
+
+                             <p>Demonyms: <span>{{data.demonyms}}</span></p>
+                        </div>
+               <div class="flag">
+                   <div class="country-body">
+                       <h5>Flag</h5>
+                      <img src="/media/{{data.flag}}" alt="imageOfLagos">
+                   </div>
+                  <div class="flag-footer">
+                    {% for time in data.timezone.all %}
+                        <h5>Time Zone:<span>{{time.timezone}}</span></h5>
+                        {% endfor %}
+                        <h5>Population: {{data.population}}</h5>
+                  </div>
+               </div>
+                <div class="culture">
+                    <h4>culture</h4>
+                    <div class="largestCity">
+                        {% for culture in data.culture.all %}
+
+                        <div class="city">
+                            <img src="/media/{{culture.photo}}" alt="imageOfLagos">
+                            <div class="country-footer">
+                                <h5>{{culture.name}}</h5>
+                                {% comment %} {{data.common_religion.all|join:", "}} {% endcomment %}
+                            </div>
+                         </div>
+                         {% endfor %}
+                        {% comment %} <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div>
+                        <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div> {% endcomment %}
+                  </div>
+                </div>
+                
+                <div class="religion">
+                    <h4>Call Code:<span class="rel">{{data.call_code}}</span></h4>
+               </div>
+
+               {% comment %} {% for group in data.ethnic_group.all %} {% endcomment %}
+                <div class="ethinic">
+                    <h4>Ethinic Group</h4>
+                    
+                    <div class="largestCity">
+                        {% for group in data.ethnic_group.all %}
+                        <div class="city">
+                            <img src="/media/{{group.photo}}" alt="imageOfLagos">
+                            <div class="country-footer">
+                                <h5>{{group.name}}</h5>
+                            </div>
+                            
+                         </div>
+                         {% endfor %}
+                        {% comment %} <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div>
+                        <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div> {% endcomment %}
+                         
+                  </div>
+                  
+                 
+                  
+                </div>
+                <div class="religion">
+                    <h4>Common Religion: <span class="rel">{{data.common_religion.all|join:", "}}</span></h4>
+                    <h4>Date of Independence:<span class="rel">{{data.independence_date}}</span></h4>
+               </div>
+                {% for mark in data.landmark.all %}
+                <div class="culture">
+                    <h4>Land Mark</h4>
+                    <div class="largestCity">
+                        <div class="city">
+                            <img src="/media/{{mark.photo}}" alt="imageOfLagos">
+                            <div class="country-footer">
+                                <h5>{{mark.name}}</h5>
+                            </div>
+                         </div>
+                        {% comment %} <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div>
+                        <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div> {% endcomment %}
+                  </div>
+                </div>
+                {% endfor %}
+                {% for tourist in data.tourist.all %}
+                <div class="culture">
+                    <h4>Tourist Attraction</h4>
+                    <div class="largestCity">
+                        <div class="city">
+                            <img src="/media/{{tourist.photo}}" alt="imageOfLagos">
+                            <div class="country-footer">
+                                <h5>{{tourist.name}}</h5>
+                            </div>
+                         </div>
+                        {% comment %} <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div>
+                        <div class="city">
+                           <img src="abuja.jpeg" alt="imageOfLagos">
+                           <div class="country-footer">
+                               <h5>Abuja</h5>
+                           </div>
+                        </div> {% endcomment %}
+                  </div>
+                </div>    
+                {% endfor %}
+               <div class="final-txt">
+                 <p>
+                    <span>Polical History:</span>{{data.political_history}}
+                </p>
+                <audio src="" />
+               </div>   
+           </div>
+       </div>
+       {% comment %} {% endfor %} {% endcomment %}
+      <footer>
+        <div class="footer-content">
+              <div class="foot-1">
+                  <h5>Let us Help You</h5>
+                  <ul>
+                    <li><a>Help Center?</a></li>
+                    <li><a>Contact Us</a></li>
+                  </ul>
+              </div>
+              <div class="foot-1">
+                 <h5>About Us</h5>
+                 <ul>
+                    <li><a>States</a></li>
+                    <li><a>Culture</a></li>
+                  </ul>
+              </div>
+             <div class="foot-1">
+                 <h5>Contact-Us</h5>
+                 <ul>
+                    <li><a>+234 858586686</a></li>
+                    <li><a>09068632296</a></li>
+                  </ul>
+             </div>
+            <div class="foot-1">
+                 <h5>Country</h5>
+                 <ul>
+                    <li><a>Nigeria</a></li>
+                    <li><a>Lagos</a></li>
+                    <li><a>Ikeja</a></li>
+                  </ul>
+            </div>
+        </div>
+      </footer>
+    <script src="index.js"></script>
+</body>
+</html>
