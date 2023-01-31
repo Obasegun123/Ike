@@ -1,0 +1,92 @@
+<!doctype html>
+{% load static %}
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'css/style12.css' %}"> <!-- Resource style -->
+	<script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+  	
+	<title>Country Comparison Table</title>
+</head>
+<body>
+	<section class="cd-intro">
+		<h1>Country Comparison Table</h1>
+	</section> <!-- .cd-intro -->
+	{% for type in data %}
+	<section class="cd-products-comparison-table">
+		<header>
+			<h2>Compare Models</h2>
+
+			<div class="actions">
+				<a href="#0" class="reset">Reset</a>
+				<a href="#0" class="filter">Filter</a>
+			</div>
+		</header>
+
+		<div class="cd-products-table">
+			<div class="features">
+				<div class="top-info">Flags</div>
+				<ul class="cd-features-list">
+					<li>Capital Name</li>
+					{% comment %} <li>Customer Rating</li> {% endcomment %}
+					<li>Language</li>
+					<li>Timezone</li>
+					<li>Call Code</li>
+					<li>Population</li>
+					{% comment %} <li>Model Year</li> {% endcomment %}
+					<li>Common Religion</li>
+					<li>Independence Date</li>
+					{% comment %} <li>Political History</li> {% endcomment %}
+					<li>Language</li>
+				</ul>
+			</div> <!-- .features -->
+			
+			<div class="cd-products-wrapper">
+				<ul class="cd-products-columns">
+					<li class="product">
+						<div class="top-info">
+							<div class="check"></div>
+							<img src="/media/{{type.flag}}" alt="product image">
+							<h3>{{type.country}}</h3>
+						</div> <!-- .top-info -->
+
+						<ul class="cd-features-list">
+							<li>{{type.capital.name}}</li>
+							{% comment %} <li class="rate"><span>5/5</span></li> {% endcomment %}
+							
+							{% comment %} <li>{{type.language.all|join:", "}}</li> {% endcomment %}
+							<li>{{type.demonyms}}</li>
+							<li>{{type.timezone.all|join:", "}}</li>
+							<li>{{type.call_code}}</li>
+							<li>{{type.population}}</li>
+							<li>{{type.common_religion.all|join:", "}}</li>
+							<li>{{type.independence_date}}</li>
+							{% comment %} <li>{{type.political_history}}</li> {% endcomment %}
+							<li><audio>
+								
+								<source src="/media/{{type.spoken_language}}" type="audio/mpeg">
+								Your browser does not support the audio element.
+						   </audio></li>
+							{% comment %} <li>1 Rear</li> {% endcomment %}
+						</ul>
+					</li> <!-- .product -->
+
+					
+				</ul> <!-- .cd-products-columns -->
+			</div> <!-- .cd-products-wrapper -->
+			
+			<ul class="cd-table-navigation">
+				<li><a href="#0" class="prev inactive">Prev</a></li>
+				<li><a href="#0" class="next">Next</a></li>
+			</ul>
+		</div> <!-- .cd-products-table -->
+	</section> 
+	{% endfor %}<!-- .cd-products-comparison-table -->
+<script src="{% static 'js/jquery-2.1.4.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script><!-- Resource jQuery -->
+</body>
+</html>
